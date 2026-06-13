@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      6.10
 // @description  1. 强制首页/最新页按创建时间排序；2. 电脑端鼠标悬停标题预览；3. 手机端点击用户头像预览；4. 预览支持作者信息、手动关闭、滚动隔离、嵌套楼层展开与顺滑定位。
-// @author       Gemini
+// @author       Gempt
 // @match        https://linux.do/*
 // @grant        none
 // @run-at       document-start
