@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      6.10
 // @description  1. 强制首页/最新页按创建时间排序；2. 电脑端鼠标悬停标题预览；3. 手机端点击用户头像预览；4. 预览支持作者信息、手动关闭、滚动隔离、嵌套楼层展开与顺滑定位。
-// @author       Gempt
+// @author       Gemini
 // @match        https://linux.do/*
 // @grant        none
 // @run-at       document-start
@@ -1067,7 +1067,7 @@
     document.addEventListener('mouseover', (e) => {
         if (window.innerWidth > 768) {
             if (isExpandedPreview) return;
-            const topicLink = e.target.closest('a.raw-link, a.title');
+            const topicLink = e.target.closest('a.raw-link, a.title, a.search-link');
             if (!topicLink) return;
             if (e.relatedTarget && (e.relatedTarget === tooltip || tooltip?.contains(e.relatedTarget))) return;
 
@@ -1087,7 +1087,7 @@
     document.addEventListener('mouseout', (e) => {
         if (window.innerWidth <= 768) return;
         if (isExpandedPreview) return;
-        const topicLink = e.target.closest('a.raw-link, a.title');
+        const topicLink = e.target.closest('a.raw-link, a.title, a.search-link');
         if (topicLink) {
             clearTimeout(hoverTimeout);
             const relatedTarget = e.relatedTarget;
@@ -1162,7 +1162,7 @@
     document.addEventListener('pointerdown', (e) => {
         if (tooltip && tooltip.style.display === 'block') {
             if (isExpandedPreview) return;
-            if (!tooltip.contains(e.target) && !e.target.closest('a.raw-link, a.title, .avatar-wrapper, a.avatar')) {
+            if (!tooltip.contains(e.target) && !e.target.closest('a.raw-link, a.title, a.search-link, .avatar-wrapper, a.avatar')) {
                 closeTooltip();
             }
         }
